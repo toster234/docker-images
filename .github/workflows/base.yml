@@ -10,7 +10,7 @@ on:
       - ubuntu/**
 jobs:
   push:
-    name: "yolks:${{ matrix.ubuntu }}"
+    name: "docker-images:${{ matrix.ubuntu }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
