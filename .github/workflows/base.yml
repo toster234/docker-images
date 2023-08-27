@@ -1,0 +1,38 @@
+name: build ubuntu
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 1"
+  push:
+    branches:
+      - main
+    paths:
+      - ubuntu/**
+jobs:
+  push:
+    name: "yolks:${{ matrix.ubuntu }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ubuntu:
+          - 20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/setup-qemu-action@v2
+      - uses: docker/setup-buildx-action@v2
+        with:
+          buildkitd-flags: --debug
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.REGISTRY_TOKEN }}
+      - uses: docker/build-push-action@v4
+        with:
+          context: ./oses/${{ matrix.oses }}
+          file: ./oses/${{ matrix.oses }}/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/toster234/Breadcrumbsdocker-images:${{ matrix.ubuntu }}
