@@ -30,8 +30,8 @@ jobs:
           password: ${{ secrets.REGISTRY_TOKEN }}
       - uses: docker/build-push-action@v4
         with:
-          context: ./oses/${{ matrix.oses }}
-          file: ./oses/${{ matrix.oses }}/Dockerfile
+          context: ./ubuntu/${{ matrix.oses }}
+          file: ./ubuntu/${{ matrix.oses }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
