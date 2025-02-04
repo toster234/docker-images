@@ -18,7 +18,9 @@ RUN apt install -y gcc g++ libgcc1 libc++-dev gdb libc6 git wget curl tar zip un
     libjsoncpp-dev libleveldb1d
 
 ## configure locale
-RUN update-locale LANG=en_US.UTF-8
+RUN echo "LANG=en_US.UTF-8" > /etc/default/locale && \
+    echo "LANGUAGE=\"en_US:en\"" >> /etc/default/locale && \
+    locale-gen en_US.UTF-8
 
 WORKDIR /home/container
 
