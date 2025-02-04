@@ -8,6 +8,10 @@ on:
       - main
     paths:
       - ubuntu/**
+      
+permissions:
+  packages: write
+  
 jobs:
   push:
     name: "docker-images:${{ matrix.ubuntu }}"
