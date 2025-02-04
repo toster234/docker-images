@@ -10,7 +10,7 @@ RUN useradd -m -d /home/container -s /bin/bash container
 ## update base packages and install dependencies
 RUN apt update && apt upgrade -y && \
     apt install -y \
-    gcc g++ libgcc1 lib32gcc1 libc++-dev gdb libc6 git wget curl tar zip unzip binutils xz-utils \
+    gcc g++ libgcc1 lib32gcc-s1 libc++-dev gdb libc6 git wget curl tar zip unzip binutils xz-utils \
     liblzo2-2 cabextract iproute2 net-tools netcat telnet libatomic1 libsdl1.2debian libsdl2-2.0-0 \
     libfontconfig libicu66 icu-devtools libunwind8 libssl1.1 sqlite3 libsqlite3-dev libmariadb-dev \
     libzip5 locales ffmpeg apt-transport-https init-system-helpers libcurl3-gnutls libjsoncpp1 \
