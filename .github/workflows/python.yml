@@ -39,7 +39,7 @@ jobs:
         run: echo "repository=${GITHUB_REPOSITORY_OWNER@L}" >> $GITHUB_OUTPUT
 
       - name: Login to GHCR
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ steps.lower-repo.outputs.repository }}
@@ -53,4 +53,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ steps.lower-repo.outputs.repository }}/python:3.12-chrome
+            ghcr.io/${{ github.repository_owner }}/docker-images:python-3.12-chrome
